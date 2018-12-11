@@ -1,3 +1,13 @@
+# Kilean addition
+fort.*
+TBT.*
+partcl.data
+*.png
+log*
+screen*
+*.npy
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
