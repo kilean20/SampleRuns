@@ -2,7 +2,6 @@
 fort.*
 TBT.*
 partcl.data
-*.png
 log*
 screen*
 *.npy
