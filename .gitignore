@@ -1,7 +1,6 @@
 # Kilean addition
 fort.*
 TBT.*
-partcl.data
 log*
 screen*
 *.npy
