@@ -55,10 +55,10 @@
 !0 means no sub-cycle, 1 with sub-cycle,
 !"1" - # of charge states
 !--------------
-23 0 0 1 stands for starting from scratch, read-in data
+!23 0 0 1 stands for starting from scratch, read-in data
 ! 23 1 0 1 stands for restarting from line "0. 0 1 -7 /"
 !5 0 0 1  !KV transverse, uniform longitudinal NOMINAL
-!3 0 0 1 !Waterbag for single-particle test
+3 0 0 1 !Waterbag for single-particle test
 !
 !--------------
 !# of particle list for each charge state
@@ -108,7 +108,7 @@
 !"402.5e6.." reference RF frequency, "0.0" - initial phase of the reference particle.
 !--------------
 !5.013138120901571e-4 2.5e6 938.272045e6 1.0 30.0e6 0.0  !New lattice parameters w/SC
-4.113e-4 2.5e6 938.272045e6 1.0 30.0e6 0.0  !Lattice parameters w/SC using 2D symplectic SC solver
+!4.113e-4 2.5e6 938.272045e6 1.0 30.0e6 0.0  !Lattice parameters w/SC using 2D symplectic SC solver
 0.0 2.5e6 938.272045e6 1.0 30.0e6 0.0  !Nparticles = 1.25 * 10^7/cm == 4.75 mA without bunching, modify mass value - SC off
 !--------------
 !
