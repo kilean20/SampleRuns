@@ -1,0 +1,25 @@
+dP=1.0e-6;
+
+beam, particle=electron, radiate=false, energy=0.150511006, npart= 1;
+option,-echo;
+call file="iota.seq";
+option,echo;
+
+use,period=iota;
+savebeta, sequence=iota;
+
+twiss,file;
+
+ptc_create_universe;
+ptc_create_layout,model=1,method=2,nst=100,exact;
+ptc_align;
+ptc_start, x= 1e-11;
+       
+ptc_track,icase=5, dump, deltap=dP,
+       //element_by_element,   
+       turns=2047, ffile=1;
+
+ptc_track_end; 
+ptc_end;
+
+stop;
