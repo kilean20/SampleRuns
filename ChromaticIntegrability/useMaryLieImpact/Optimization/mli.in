@@ -1,0 +1,453 @@
+#menu 
+
+beam: beam, particle=electron, energy=0.150511006 
+units: units, type=static 
+setdefaults: globaldefaults, lfrngsbend=1, tfrngsbend=1, lfrngquad=1, tfrngquad=1, driftexact=1 
+ibpm: monitor 
+ibpma1: monitor 
+qa1r: quadrupole, l=0.21, k1=-8.824391 
+qa2r: quadrupole, l=0.21, k1=13.24948757 
+bumpr: vkicker, l=0.1, kick=0 
+drift_thin_sa1r: drift, l=0.05 
+sa1r: thlm, k2l=-67.83490571355505, k3l=4506.539557926857 
+sqa1r: quadrupole, l=0.1, k1s=0 
+ibpma2r: monitor 
+qa3r: quadrupole, l=0.21, k1=-13.67986962 
+qa4r: quadrupole, l=0.21, k1=19.77167236 
+ibpma3r: monitor 
+sqa2r: quadrupole, l=0.1, k1s=0 
+m1r: sbend, l=0.4305191429, angle=0.5235987756, hgap=0.029, fint=0.5 
+sqb1r: quadrupole, l=0.1, k1s=0 
+qb1r: quadrupole, l=0.21, k1=-10.86256001 
+qb2r: quadrupole, l=0.21, k1=16.23653968 
+qb3r: quadrupole, l=0.21, k1=-8.24661099 
+ibpmb1r: monitor 
+nlr1: marker 
+mn09: marker, apertype=ellipse, aperture={0.0069138074,0.00921840994} 
+mn08: marker, apertype=ellipse, aperture={0.0063622465,0.00848299541} 
+mn07: marker, apertype=ellipse, aperture={0.0058417668,0.00778902251} 
+mn06: marker, apertype=ellipse, aperture={0.0053603421,0.0071471228} 
+mn05: marker, apertype=ellipse, aperture={0.0049279501,0.00657060016} 
+mn04: marker, apertype=ellipse, aperture={0.0045566354,0.00607551398} 
+mn03: marker, apertype=ellipse, aperture={0.0042600509,0.00568006786} 
+mn02: marker, apertype=ellipse, aperture={0.0040521202,0.00540282702} 
+mn01: marker, apertype=ellipse, aperture={0.0039446881,0.00525958413} 
+ior: marker 
+n.1: drift, l=0.0 
+n.2: drift, l=0.0 
+n.3: drift, l=0.0 
+n.4: drift, l=0.0 
+n.5: drift, l=0.0 
+n.6: drift, l=0.0 
+n.7: drift, l=0.0 
+n.8: drift, l=0.0 
+n.9: drift, l=0.0 
+n.10: drift, l=0.0 
+n.11: drift, l=0.0 
+n.12: drift, l=0.0 
+n.13: drift, l=0.0 
+n.14: drift, l=0.0 
+n.15: drift, l=0.0 
+n.16: drift, l=0.0 
+n.17: drift, l=0.0 
+n.18: drift, l=0.0 
+n.19: drift, l=0.0 
+n.20: drift, l=0.0 
+insert1: drift, l=1.8 
+nlr2: marker 
+ibpmb2r: monitor 
+qb4r: quadrupole, l=0.21, k1=-7.3562074 
+qb5r: quadrupole, l=0.21, k1=14.21989577 
+qb6r: quadrupole, l=0.21, k1=-12.55009175 
+sqb2r: quadrupole, l=0.1, k1s=0 
+m2r: sbend, l=0.8092963858, angle=1.047197551, hgap=0.029, fint=0.5 
+sqc1r: quadrupole, l=0.1, k1s=0 
+ibpmc1r: monitor 
+qc1r: quadrupole, l=0.21, k1=-13.06445567 
+drift_thin_sc1r: drift, l=0.05 
+sc1r: thlm, k2l=-5.939001628034404, k3l=1753.5432594869042 
+qc2r: quadrupole, l=0.21, k1=11.98794092 
+drift_thin_sc2r: drift, l=0.05 
+sc2r: thlm, k2l=20.126772081694064, k3l=-2755.3666150160757 
+qc3r: quadrupole, l=0.21, k1=-10.84105489 
+ibpmc2r: monitor 
+sqc2r: quadrupole, l=0.1, k1s=0 
+m3r: sbend, l=0.8092963858, angle=1.047197551, hgap=0.029, fint=0.5 
+ibpmd1r: monitor 
+sqd1r: quadrupole, l=0.1, k1s=0 
+qd1r: quadrupole, l=0.21, k1=-6.79843354 
+drift_thin_sd1r: drift, l=0.05 
+sd1r: thlm, k2l=-61.687880996468294, k3l=-1721.8920791777243 
+qd2r: quadrupole, l=0.21, k1=5.94478451 
+el1: marker 
+cel: drift, l=0.5 
+el2: marker 
+qd3r: quadrupole, l=0.21, k1=-5.50772708 
+sqd2r: quadrupole, l=0.1, k1s=0 
+qd4r: quadrupole, l=0.21, k1=3.7997295 
+ibpmd2r: monitor 
+m4r: sbend, l=0.4305191429, angle=0.5235987756, hgap=0.029, fint=0.5 
+ibpme1r: monitor 
+qe1r: quadrupole, l=0.21, k1=-4.48331626 
+sqe1r: quadrupole, l=0.1, k1s=0 
+ibpme2r: monitor 
+qe2r: quadrupole, l=0.21, k1=6.00182502 
+drift_thin_se1r: drift, l=0.05 
+se1r: thlm, k2l=19.00719349199824, k3l=494.60965925334233 
+sqe2r: quadrupole, l=0.1, k1s=0 
+drift_thin_se2r: drift, l=0.05 
+se2r: thlm, k2l=1.8062332091743745, k3l=-5462.048650413541 
+qe3: quadrupole, l=0.21, k1=-6.78634191 
+drift_thin_se2l: drift, l=0.05 
+se2l: thlm, k2l=-53.64017867565948, k3l=7267.106296229681 
+sqe2l: quadrupole, l=0.1, k1s=0 
+drift_thin_se1l: drift, l=0.05 
+se1l: thlm, k2l=-0.309467538881109, k3l=-3244.435201376809 
+qe2l: quadrupole, l=0.21, k1=6.00182502 
+ibpme2l: monitor 
+sqe1l: quadrupole, l=0.1, k1s=0 
+qe1l: quadrupole, l=0.21, k1=-4.48331626 
+ibpme1l: monitor 
+m4l: sbend, l=0.4305191429, angle=0.5235987756, hgap=0.029, fint=0.5 
+ibpmd2l: monitor 
+qd4l: quadrupole, l=0.21, k1=3.7997295 
+sqd2l: quadrupole, l=0.1, k1s=0 
+qd3l: quadrupole, l=0.21, k1=-5.50772708 
+qd2l: quadrupole, l=0.21, k1=5.94478451 
+drift_thin_sd1l: drift, l=0.05 
+sd1l: thlm, k2l=22.730565796084605, k3l=3900.6925878668367 
+qd1l: quadrupole, l=0.21, k1=-6.79843354 
+sqd1l: quadrupole, l=0.1, k1s=0 
+ibpmd1l: monitor 
+m3l: sbend, l=0.8092963858, angle=1.047197551, hgap=0.029, fint=0.5 
+sqc2l: quadrupole, l=0.1, k1s=0 
+ibpmc2l: monitor 
+qc3l: quadrupole, l=0.21, k1=-10.84105489 
+drift_thin_sc2l: drift, l=0.05 
+sc2l: thlm, k2l=18.077028498511922, k3l=-529.1807418384094 
+qc2l: quadrupole, l=0.21, k1=11.98794092 
+drift_thin_sc1l: drift, l=0.05 
+sc1l: thlm, k2l=-24.923880712353956, k3l=-1131.6911881876692 
+qc1l: quadrupole, l=0.21, k1=-13.06445567 
+ibpmc1l: monitor 
+sqc1l: quadrupole, l=0.1, k1s=0 
+m2l: sbend, l=0.8092963858, angle=1.047197551, hgap=0.029, fint=0.5 
+sqb2l: quadrupole, l=0.1, k1s=0 
+qb6l: quadrupole, l=0.21, k1=-12.55009175 
+qb5l: quadrupole, l=0.21, k1=14.21989577 
+qb4l: quadrupole, l=0.21, k1=-7.3562074 
+ibpmb2l: monitor 
+nll1: marker 
+iol: marker 
+nll2: marker 
+ibpmb1l: monitor 
+qb3l: quadrupole, l=0.21, k1=-8.24661099 
+qb2l: quadrupole, l=0.21, k1=16.23653968 
+qb1l: quadrupole, l=0.21, k1=-10.86256001 
+sqb1l: quadrupole, l=0.1, k1s=0 
+m1l: sbend, l=0.4305191429, angle=0.5235987756, hgap=0.029, fint=0.5 
+sqa2l: quadrupole, l=0.1, k1s=0 
+ibpma3l: monitor 
+qa4l: quadrupole, l=0.21, k1=19.77167236 
+qa3l: quadrupole, l=0.21, k1=-13.67986962 
+ibpma2l: monitor 
+sqa1l: quadrupole, l=0.1, k1s=0 
+drift_thin_sa1l: drift, l=0.05 
+sa1l: thlm, k2l=-20.502659802018215, k3l=5580.389703183951 
+bumpl: vkicker, l=0.1, kick=0 
+qa2l: quadrupole, l=0.21, k1=13.24948757 
+qa1l: quadrupole, l=0.21, k1=-8.824391 
+drift_thin_sadd1: drift, l=0.05 
+sadd1: thlm, k2l=-28.9757577304584, k3l=-6806.872196284358 
+drift_thin_sadd2: drift, l=0.05 
+sadd2: thlm, k2l=33.36118892785316, k3l=-145.40478096802804 
+drift_thin_sadd3: drift, l=0.05 
+sadd3: thlm, k2l=80.64445846622536, k3l=-2782.368289607548 
+drift_thin_sadd4: drift, l=0.05 
+sadd4: thlm, k2l=-34.7530005098667, k3l=950.8834805882326 
+drift_thin_sadd5: drift, l=0.05 
+sadd5: thlm, k2l=-99.33538444658119, k3l=-5270.4255497065715 
+drift_thin_sadd6: drift, l=0.05 
+sadd6: thlm, k2l=-71.85126878631229, k3l=1026.4209787101956 
+endmark: marker 
+thincav: srfc, volts=0.0, freq=2185861.94643064 
+dr001: drift, l=0.02 
+dr002: drift, l=0.7925 
+dr003: drift, l=0.135 
+dr004: drift, l=0.0825 
+dr005: drift, l=0.15 
+dr006: drift, l=0.04 
+dr007: drift, l=0.055 
+dr008: drift, l=0.0975 
+dr009: drift, l=0.145 
+dr010: drift, l=0.1075 
+dr011: drift, l=0.055 
+dr012: drift, l=0.07799999955 
+dr013: drift, l=0.13800000055 
+dr014: drift, l=0.0825 
+dr015: drift, l=0.14 
+dr016: drift, l=0.14 
+dr017: drift, l=0.1075 
+dr018: drift, l=0.045 
+dr019: drift, l=0.0 
+dr020: drift, l=0.045 
+dr021: drift, l=0.055 
+dr022: drift, l=0.0 
+dr023: drift, l=0.035 
+dr024: drift, l=0.065 
+dr025: drift, l=0.0 
+dr026: drift, l=0.025 
+dr027: drift, l=0.075 
+dr028: drift, l=0.0 
+dr029: drift, l=0.015 
+dr030: drift, l=0.085 
+dr031: drift, l=0.0 
+dr032: drift, l=0.005 
+dr033: drift, l=0.09 
+dr034: drift, l=0.005 
+dr035: drift, l=0.0 
+dr036: drift, l=0.085 
+dr037: drift, l=0.015 
+dr038: drift, l=0.0 
+dr039: drift, l=0.075 
+dr040: drift, l=0.025 
+dr041: drift, l=0.0 
+dr042: drift, l=0.065 
+dr043: drift, l=0.035 
+dr044: drift, l=0.0 
+dr045: drift, l=0.055 
+dr046: drift, l=0.045 
+dr047: drift, l=0.0 
+dr048: drift, l=0.0 
+dr049: drift, l=0.045 
+dr050: drift, l=0.055 
+dr051: drift, l=0.0 
+dr052: drift, l=0.035 
+dr053: drift, l=0.065 
+dr054: drift, l=0.0 
+dr055: drift, l=0.025 
+dr056: drift, l=0.075 
+dr057: drift, l=0.0 
+dr058: drift, l=0.015 
+dr059: drift, l=0.085 
+dr060: drift, l=0.0 
+dr061: drift, l=0.005 
+dr062: drift, l=0.09 
+dr063: drift, l=0.005 
+dr064: drift, l=0.0 
+dr065: drift, l=0.085 
+dr066: drift, l=0.015 
+dr067: drift, l=0.0 
+dr068: drift, l=0.075 
+dr069: drift, l=0.025 
+dr070: drift, l=0.0 
+dr071: drift, l=0.065 
+dr072: drift, l=0.035 
+dr073: drift, l=0.0 
+dr074: drift, l=0.055 
+dr075: drift, l=0.045 
+dr076: drift, l=0.0 
+dr077: drift, l=0.045 
+dr078: drift, l=0.1075 
+dr079: drift, l=0.14 
+dr080: drift, l=0.14 
+dr081: drift, l=0.0825 
+dr082: drift, l=0.1318709501 
+dr083: drift, l=0.1618709501 
+dr084: drift, l=0.055 
+dr085: drift, l=0.1075 
+dr086: drift, l=0.1275 
+dr087: drift, l=0.1275 
+dr088: drift, l=0.127500001 
+dr089: drift, l=0.1275 
+dr090: drift, l=0.1075 
+dr091: drift, l=0.055 
+dr092: drift, l=0.1618709471 
+dr093: drift, l=0.2168709471 
+dr094: drift, l=0.135 
+dr095: drift, l=0.0725 
+dr096: drift, l=0.16 
+dr097: drift, l=0.16 
+dr098: drift, l=0.4625 
+dr099: drift, l=-3.3306690739e-16 
+dr100: drift, l=0.0 
+dr101: drift, l=0.4625 
+dr102: drift, l=0.16 
+dr103: drift, l=0.16 
+dr104: drift, l=0.3075 
+dr105: drift, l=0.32300000855 
+dr106: drift, l=0.32299999855 
+dr107: drift, l=0.2075 
+dr108: drift, l=0.0925 
+dr109: drift, l=0.935 
+dr110: drift, l=0.1075 
+dr111: drift, l=0.0925 
+dr112: drift, l=0.04 
+dr113: drift, l=0.2825 
+dr114: drift, l=0.0925 
+dr115: drift, l=0.0925 
+dr116: drift, l=0.2825 
+dr117: drift, l=0.04 
+dr118: drift, l=0.0925 
+dr119: drift, l=0.1075 
+dr120: drift, l=0.935 
+dr121: drift, l=0.0925 
+dr122: drift, l=0.2075 
+dr123: drift, l=0.32299999855 
+dr124: drift, l=0.32299999855 
+dr125: drift, l=0.3075 
+dr126: drift, l=0.16 
+dr127: drift, l=0.16 
+dr128: drift, l=0.8125 
+dr129: drift, l=0.8125 
+dr130: drift, l=0.16 
+dr131: drift, l=0.16 
+dr132: drift, l=0.0725 
+dr133: drift, l=0.135 
+dr134: drift, l=0.3168709471 
+dr135: drift, l=0.1618709571 
+dr136: drift, l=0.055 
+dr137: drift, l=0.1075 
+dr138: drift, l=0.1275 
+dr139: drift, l=0.1275 
+dr140: drift, l=0.1275 
+dr141: drift, l=0.1275 
+dr142: drift, l=0.1075 
+dr143: drift, l=0.055 
+dr144: drift, l=0.1618709471 
+dr145: drift, l=0.1318709471 
+dr146: drift, l=0.0825 
+dr147: drift, l=0.14 
+dr148: drift, l=0.14 
+dr149: drift, l=0.1075 
+dr150: drift, l=0.045 
+dr151: drift, l=0.0 
+dr152: drift, l=0.1 
+dr153: drift, l=0.0 
+dr154: drift, l=0.1 
+dr155: drift, l=0.0 
+dr156: drift, l=0.1 
+dr157: drift, l=0.0 
+dr158: drift, l=0.1 
+dr159: drift, l=0.0 
+dr160: drift, l=0.1 
+dr161: drift, l=0.0 
+dr162: drift, l=0.1 
+dr163: drift, l=0.0 
+dr164: drift, l=0.1 
+dr165: drift, l=0.0 
+dr166: drift, l=0.1 
+dr167: drift, l=0.0 
+dr168: drift, l=0.1 
+dr169: drift, l=0.0 
+dr170: drift, l=0.0 
+dr171: drift, l=0.1 
+dr172: drift, l=0.0 
+dr173: drift, l=0.1 
+dr174: drift, l=0.0 
+dr175: drift, l=0.1 
+dr176: drift, l=0.0 
+dr177: drift, l=0.1 
+dr178: drift, l=0.0 
+dr179: drift, l=0.1 
+dr180: drift, l=0.0 
+dr181: drift, l=0.1 
+dr182: drift, l=0.0 
+dr183: drift, l=0.1 
+dr184: drift, l=0.0 
+dr185: drift, l=0.1 
+dr186: drift, l=0.0 
+dr187: drift, l=0.1 
+dr188: drift, l=0.0 
+dr189: drift, l=0.045 
+dr190: drift, l=0.1075 
+dr191: drift, l=0.14 
+dr192: drift, l=0.14 
+dr193: drift, l=0.0825 
+dr194: drift, l=0.13799999855 
+dr195: drift, l=0.07800000855 
+dr196: drift, l=0.055 
+dr197: drift, l=0.1075 
+dr198: drift, l=0.145 
+dr199: drift, l=0.0975 
+dr200: drift, l=0.055 
+dr201: drift, l=0.04 
+dr202: drift, l=0.15 
+dr203: drift, l=0.0825 
+dr204: drift, l=0.135 
+dr205: drift, l=0.9125 
+fin: end 
+mapout: ptm, matrix=3, poly=3 
+
+iotaline, line=( nlr2 dr077 ibpmb2r dr078 qb4r & 
+dr079 qb5r dr080 qb6r dr081 & 
+sqb2r dr082 m2r dr083 sqc1r & 
+dr084 ibpmc1r dr085 qc1r dr086 & 
+drift_thin_sc1r sc1r drift_thin_sc1r dr087 qc2r & 
+dr088 drift_thin_sc2r sc2r drift_thin_sc2r dr089 & 
+qc3r dr090 ibpmc2r dr091 sqc2r & 
+dr092 m3r dr093 drift_thin_sadd2 sadd2 & 
+drift_thin_sadd2 ibpmd1r dr094 sqd1r dr095 & 
+qd1r dr096 drift_thin_sd1r sd1r drift_thin_sd1r & 
+dr097 qd2r dr098 el1 dr099 & 
+drift_thin_sadd3 sadd3 drift_thin_sadd3 cel drift_thin_sadd4 & 
+sadd4 drift_thin_sadd4 dr100 el2 dr101 & 
+qd3r dr102 sqd2r dr103 qd4r & 
+dr104 ibpmd2r dr105 m4r dr106 & 
+ibpme1r dr107 qe1r dr108 sqe1r & 
+dr109 ibpme2r dr110 qe2r dr111 & 
+drift_thin_se1r se1r drift_thin_se1r dr112 sqe2r & 
+dr113 drift_thin_se2r se2r drift_thin_se2r dr114 & 
+qe3 dr115 drift_thin_se2l se2l drift_thin_se2l & 
+dr116 sqe2l dr117 drift_thin_se1l se1l & 
+drift_thin_se1l dr118 qe2l dr119 ibpme2l & 
+dr120 sqe1l dr121 qe1l dr122 & 
+ibpme1l dr123 m4l dr124 ibpmd2l & 
+dr125 qd4l dr126 sqd2l dr127 & 
+qd3l dr128 dr129 qd2l dr130 & 
+drift_thin_sd1l sd1l drift_thin_sd1l dr131 qd1l & 
+dr132 sqd1l dr133 ibpmd1l dr134 & 
+m3l dr135 sqc2l dr136 ibpmc2l & 
+dr137 qc3l dr138 drift_thin_sc2l sc2l & 
+drift_thin_sc2l dr139 qc2l dr140 drift_thin_sc1l & 
+sc1l drift_thin_sc1l dr141 qc1l dr142 & 
+ibpmc1l dr143 sqc1l dr144 m2l & 
+dr145 sqb2l dr146 qb6l dr147 & 
+qb5l dr148 qb4l dr149 ibpmb2l & 
+dr150 nll1 dr151 mn09 dr152 & 
+mn09 dr153 mn08 dr154 mn08 & 
+dr155 mn07 dr156 mn07 dr157 & 
+mn06 dr158 mn06 dr159 mn05 & 
+dr160 mn05 dr161 mn04 drift_thin_sadd5 & 
+sadd5 drift_thin_sadd5 mn04 dr163 mn03 & 
+dr164 mn03 dr165 mn02 dr166 & 
+mn02 dr167 mn01 dr168 mn01 & 
+dr169 iol dr170 mn01 dr171 & 
+mn01 dr172 mn02 dr173 mn02 & 
+dr174 mn03 dr175 mn03 dr176 & 
+mn04 dr177 mn04 dr178 mn05 & 
+dr179 mn05 dr180 mn06 dr181 & 
+mn06 dr182 mn07 drift_thin_sadd6 sadd6 & 
+drift_thin_sadd6 mn07 dr184 mn08 dr185 & 
+mn08 dr186 mn09 dr187 mn09 & 
+dr188 nll2 dr189 ibpmb1l dr190 & 
+qb3l dr191 qb2l dr192 qb1l & 
+dr193 sqb1l dr194 m1l dr195 & 
+sqa2l dr196 ibpma3l dr197 qa4l & 
+dr198 qa3l dr199 ibpma2l dr200 & 
+sqa1l dr201 drift_thin_sa1l sa1l drift_thin_sa1l & 
+dr202 bumpl dr203 qa2l dr204 & 
+qa1l dr205 endmark dr001 ibpma1 & 
+drift_thin_sadd1 sadd1 drift_thin_sadd1 dr002 qa1r & 
+dr003 qa2r dr004 bumpr dr005 & 
+drift_thin_sa1r sa1r drift_thin_sa1r dr006 sqa1r & 
+dr007 ibpma2r dr008 qa3r dr009 & 
+qa4r dr010 ibpma3r dr011 sqa2r & 
+dr012 m1r dr013 sqb1r dr014 & 
+qb1r dr015 qb2r dr016 qb3r & 
+dr017 ibpmb1r dr018 nlr1 ) 
+anaprint, line=( stasm scod wsq prntref ) 
+#labor
+iotaline
+mapout
+fin
