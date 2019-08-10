@@ -1,4 +1,0 @@
-#menu
-beam: beam, particle=electron, energy=0.150511006d0
-units: units, type=static
-setdefaults: globaldefaults, lfrngsbend=1,tfrngsbend=1,lfrngquad=1,tfrngquad=1,driftexact=0
