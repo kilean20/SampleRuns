@@ -1,0 +1,13 @@
+#menu 
+
+beam: beam, ekinetic=0.0025, mass=0.938272045, charge=1.0 
+units: units, type=static 
+setdefaults: globaldefaults, lfrngsbend=1, tfrngsbend=1, lfrngquad=0, tfrngquad=0, driftexact=1 
+dipole1: sbend, l=0.2, angle=0.5235987755982988, hgap=0.015, fint=0.5 
+ptm: ptm, matrix=3, poly=3 
+
+impactLattice, line=( dipole1 ) 
+
+#labor 
+impactLattice 
+ptm 

@@ -1,0 +1,24 @@
+ nconst=          14
+    n    constr      conval
+           1 pi                                                             3.1415926535897931     
+           2 twopi                                                          6.2831853071795862     
+           3 clight                                                         299792458.00000000     
+           4 brho                                                          0.22862187734694980     
+           5 gamma                                                          1.0026644724345379     
+           6 charge                                                         1.0000000000000000     
+           7 mass                                                           938272045.00000000     
+           8 beta                                                           7.2854114795063457E-002
+           9 energy                                                         940772045.00000000     
+          10 ekinetic                                                       2500000.0000000000     
+          11 pc                                                             68539114.562415645     
+          12 p0sc                                                          0.22862187734694986     
+          13 freqscl                                                        47713451.592369422     
+          14 omegascl                                                       299792458.00000000     
+  
+ na=           5
+ listing of n,nt1(n),nt2(n) for n=1,...,na
+   1    7   47 beam             beam                 1     1         10    1
+   2    7   48 units            units               11     2          5    2
+   3    7   78 globaldefaults   setdefaults         16     4          5    0
+   4    1   44 sbend            dipole1             21     4         28    0
+   5    7   11 ptm              ptm                 49     4          5    0

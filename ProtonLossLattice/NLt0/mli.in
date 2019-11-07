@@ -1,0 +1,261 @@
+#menu 
+
+beam: beam, ekinetic=0.0025, mass=0.938272045, charge=1.0 
+units: units, type=static 
+setdefaults: globaldefaults, lfrngsbend=1, tfrngsbend=1, lfrngquad=0, tfrngquad=0, driftexact=1 
+drift1: drift, l=0.02 
+drift2: drift, l=0.8925 
+quad1: quadrupole, l=0.21, k1=-8.78017699048 
+drift3: drift, l=0.135 
+quad2: quadrupole, l=0.21, k1=13.2445174476 
+drift4: drift, l=0.0825 
+drift5: drift, l=0.1 
+drift6: drift, l=0.15 
+drift7: drift, l=0.05 
+drift8: drift, l=0.05 
+drift9: drift, l=0.04 
+drift10: drift, l=0.1 
+drift11: drift, l=0.055 
+drift12: drift, l=0.0975 
+quad3: quadrupole, l=0.21, k1=-13.6515132714 
+drift13: drift, l=0.145 
+quad4: quadrupole, l=0.21, k1=19.751386519 
+drift14: drift, l=0.1075 
+drift15: drift, l=0.055 
+drift16: drift, l=0.1 
+drift17: drift, l=0.078 
+dipole1: sbend, l=0.4305191429, angle=0.5235987756, hgap=0.029, fint=0.5 
+drift18: drift, l=0.138 
+drift19: drift, l=0.1 
+drift20: drift, l=0.0825 
+quad5: quadrupole, l=0.21, k1=-10.8419972714 
+drift21: drift, l=0.14 
+quad6: quadrupole, l=0.21, k1=16.248443481 
+drift22: drift, l=0.14 
+quad7: quadrupole, l=0.21, k1=-8.2741110381 
+drift23: drift, l=0.1075 
+drift24: drift, l=0.045 
+drift25: drift, l=1.8 
+drift26: drift, l=0.045 
+drift27: drift, l=0.1075 
+quad8: quadrupole, l=0.21, k1=-7.45719247143 
+drift28: drift, l=0.14 
+quad9: quadrupole, l=0.21, k1=14.0336224286 
+drift29: drift, l=0.14 
+quad10: quadrupole, l=0.21, k1=-12.2359564095 
+drift30: drift, l=0.0825 
+drift31: drift, l=0.1 
+drift32: drift, l=0.13187095 
+dipole2: sbend, l=0.8092963858, angle=1.047197551, hgap=0.029, fint=0.5 
+drift33: drift, l=0.16187095 
+drift34: drift, l=0.1 
+drift35: drift, l=0.055 
+drift36: drift, l=0.1075 
+quad11: quadrupole, l=0.21, k1=-13.188637681 
+drift37: drift, l=0.1275 
+drift38: drift, l=0.05 
+drift39: drift, l=0.05 
+drift40: drift, l=0.1275 
+quad12: quadrupole, l=0.21, k1=11.5060182905 
+drift41: drift, l=0.127500001 
+drift42: drift, l=0.05 
+drift43: drift, l=0.05 
+drift44: drift, l=0.1275 
+quad13: quadrupole, l=0.21, k1=-11.1044586905 
+drift45: drift, l=0.1075 
+drift46: drift, l=0.055 
+drift47: drift, l=0.1 
+drift48: drift, l=0.16187095 
+dipole3: sbend, l=0.8092963858, angle=1.047197551, hgap=0.029, fint=0.5 
+drift49: drift, l=0.31687095 
+drift50: drift, l=0.135 
+drift51: drift, l=0.1 
+drift52: drift, l=0.0725 
+quad14: quadrupole, l=0.21, k1=-6.78179218095 
+drift53: drift, l=0.16 
+drift54: drift, l=0.05 
+drift55: drift, l=0.05 
+drift56: drift, l=0.16 
+quad15: quadrupole, l=0.21, k1=5.19026998095 
+drift57: drift, l=0.4625 
+drift58: drift, l=0.7 
+drift59: drift, l=0.4625 
+quad16: quadrupole, l=0.21, k1=-5.8586173 
+drift60: drift, l=0.16 
+drift61: drift, l=0.1 
+drift62: drift, l=0.16 
+quad17: quadrupole, l=0.21, k1=4.62460039 
+drift63: drift, l=0.3075 
+drift64: drift, l=0.323 
+dipole4: sbend, l=0.4305191429, angle=0.5235987756, hgap=0.029, fint=0.5 
+drift65: drift, l=0.323 
+drift66: drift, l=0.2075 
+quad18: quadrupole, l=0.21, k1=-4.49607687 
+drift67: drift, l=0.0925 
+drift68: drift, l=0.1 
+drift69: drift, l=0.935 
+drift70: drift, l=0.1075 
+quad19: quadrupole, l=0.21, k1=6.6673714619 
+drift71: drift, l=0.0925 
+drift72: drift, l=0.05 
+drift73: drift, l=0.05 
+drift74: drift, l=0.04 
+drift75: drift, l=0.1 
+drift76: drift, l=0.2825 
+drift77: drift, l=0.05 
+drift78: drift, l=0.05 
+drift79: drift, l=0.0925 
+quad20: quadrupole, l=0.21, k1=-6.69148177143 
+drift80: drift, l=0.0925 
+drift81: drift, l=0.05 
+drift82: drift, l=0.05 
+drift83: drift, l=0.2825 
+drift84: drift, l=0.1 
+drift85: drift, l=0.04 
+drift86: drift, l=0.05 
+drift87: drift, l=0.05 
+drift88: drift, l=0.0925 
+quad21: quadrupole, l=0.21, k1=6.6673714619 
+drift89: drift, l=0.1075 
+drift90: drift, l=0.935 
+drift91: drift, l=0.1 
+drift92: drift, l=0.0925 
+quad22: quadrupole, l=0.21, k1=-4.49607687 
+drift93: drift, l=0.2075 
+drift94: drift, l=0.323 
+dipole5: sbend, l=0.4305191429, angle=0.5235987756, hgap=0.029, fint=0.5 
+drift95: drift, l=0.323 
+drift96: drift, l=0.3075 
+quad23: quadrupole, l=0.21, k1=4.62460039 
+drift97: drift, l=0.16 
+drift98: drift, l=0.1 
+drift99: drift, l=0.16 
+quad24: quadrupole, l=0.21, k1=-5.8586173 
+drift100: drift, l=0.7875 
+drift101: drift, l=0.025 
+drift102: drift, l=0.025 
+drift103: drift, l=0.7875 
+quad25: quadrupole, l=0.21, k1=5.19026998095 
+drift104: drift, l=0.16 
+drift105: drift, l=0.05 
+drift106: drift, l=0.05 
+drift107: drift, l=0.16 
+quad26: quadrupole, l=0.21, k1=-6.78179218095 
+drift108: drift, l=0.0725 
+drift109: drift, l=0.1 
+drift110: drift, l=0.135 
+drift111: drift, l=0.31687095 
+dipole6: sbend, l=0.8092963858, angle=1.047197551, hgap=0.029, fint=0.5 
+drift112: drift, l=0.16187095 
+drift113: drift, l=0.1 
+drift114: drift, l=0.055 
+drift115: drift, l=0.1075 
+quad27: quadrupole, l=0.21, k1=-11.1044586905 
+drift116: drift, l=0.1275 
+drift117: drift, l=0.05 
+drift118: drift, l=0.05 
+drift119: drift, l=0.1275 
+quad28: quadrupole, l=0.21, k1=11.5060182905 
+drift120: drift, l=0.1275 
+drift121: drift, l=0.05 
+drift122: drift, l=0.05 
+drift123: drift, l=0.1275 
+quad29: quadrupole, l=0.21, k1=-13.188637681 
+drift124: drift, l=0.1075 
+drift125: drift, l=0.055 
+drift126: drift, l=0.1 
+drift127: drift, l=0.16187095 
+dipole7: sbend, l=0.8092963858, angle=1.047197551, hgap=0.029, fint=0.5 
+drift128: drift, l=0.13187095 
+drift129: drift, l=0.1 
+drift130: drift, l=0.0825 
+quad30: quadrupole, l=0.21, k1=-12.2359564095 
+drift131: drift, l=0.14 
+quad31: quadrupole, l=0.21, k1=14.0336224286 
+drift132: drift, l=0.14 
+quad32: quadrupole, l=0.21, k1=-7.45719247143 
+drift133: drift, l=0.1075 
+drift134: drift, l=0.045 
+drift135: drift, l=1.8 
+drift136: drift, l=0.045 
+drift137: drift, l=0.1075 
+quad33: quadrupole, l=0.21, k1=-8.2741110381 
+drift138: drift, l=0.14 
+quad34: quadrupole, l=0.21, k1=16.248443481 
+drift139: drift, l=0.14 
+quad35: quadrupole, l=0.21, k1=-10.8419972714 
+drift140: drift, l=0.0825 
+drift141: drift, l=0.1 
+drift142: drift, l=0.138 
+dipole8: sbend, l=0.4305191429, angle=0.5235987756, hgap=0.029, fint=0.5 
+drift143: drift, l=0.078 
+drift144: drift, l=0.1 
+drift145: drift, l=0.055 
+drift146: drift, l=0.1075 
+quad36: quadrupole, l=0.21, k1=19.751386519 
+drift147: drift, l=0.145 
+quad37: quadrupole, l=0.21, k1=-13.6515132714 
+drift148: drift, l=0.0975 
+drift149: drift, l=0.055 
+drift150: drift, l=0.1 
+drift151: drift, l=0.04 
+drift152: drift, l=0.05 
+drift153: drift, l=0.05 
+drift154: drift, l=0.15 
+drift155: drift, l=0.1 
+drift156: drift, l=0.0825 
+quad38: quadrupole, l=0.21, k1=13.2445174476 
+drift157: drift, l=0.135 
+quad39: quadrupole, l=0.21, k1=-8.78017699048 
+drift158: drift, l=0.9125 
+raytrace: raytrace, file1=rays.in, type=readonly 
+autotrack:autotrack, type=symplectic5 
+particledump: particledump, file=rays.out, precision=9, close=false, flush=true, nunits=0 
+ptm: ptm, matrix=3, poly=3 
+
+impactLattice, line=( drift1 drift2 quad1 drift3 quad2 & 
+drift4 drift5 drift6 drift7 drift8 & 
+drift9 drift10 drift11 drift12 quad3 & 
+drift13 quad4 drift14 drift15 drift16 & 
+drift17 dipole1 drift18 drift19 drift20 & 
+quad5 drift21 quad6 drift22 quad7 & 
+drift23 drift24 drift25 drift26 drift27 & 
+quad8 drift28 quad9 drift29 quad10 & 
+drift30 drift31 drift32 dipole2 drift33 & 
+drift34 drift35 drift36 quad11 drift37 & 
+drift38 drift39 drift40 quad12 drift41 & 
+drift42 drift43 drift44 quad13 drift45 & 
+drift46 drift47 drift48 dipole3 drift49 & 
+drift50 drift51 drift52 quad14 drift53 & 
+drift54 drift55 drift56 quad15 drift57 & 
+drift58 drift59 quad16 drift60 drift61 & 
+drift62 quad17 drift63 drift64 dipole4 & 
+drift65 drift66 quad18 drift67 drift68 & 
+drift69 drift70 quad19 drift71 drift72 & 
+drift73 drift74 drift75 drift76 drift77 & 
+drift78 drift79 quad20 drift80 drift81 & 
+drift82 drift83 drift84 drift85 drift86 & 
+drift87 drift88 quad21 drift89 drift90 & 
+drift91 drift92 quad22 drift93 drift94 & 
+dipole5 drift95 drift96 quad23 drift97 & 
+drift98 drift99 quad24 drift100 drift101 & 
+drift102 drift103 quad25 drift104 drift105 & 
+drift106 drift107 quad26 drift108 drift109 & 
+drift110 drift111 dipole6 drift112 drift113 & 
+drift114 drift115 quad27 drift116 drift117 & 
+drift118 drift119 quad28 drift120 drift121 & 
+drift122 drift123 quad29 drift124 drift125 & 
+drift126 drift127 dipole7 drift128 drift129 & 
+drift130 quad30 drift131 quad31 drift132 & 
+quad32 drift133 drift134 drift135 drift136 & 
+drift137 quad33 drift138 quad34 drift139 & 
+quad35 drift140 drift141 drift142 dipole8 & 
+drift143 drift144 drift145 drift146 quad36 & 
+drift147 quad37 drift148 drift149 drift150 & 
+drift151 drift152 drift153 drift154 drift155 & 
+drift156 quad38 drift157 quad39 drift158 & 
+particledump ) 
+
+#labor 
+impactLattice 
+ptm 
