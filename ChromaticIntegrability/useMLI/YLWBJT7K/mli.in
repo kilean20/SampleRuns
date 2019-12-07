@@ -1,0 +1,25 @@
+#menu 
+
+beam: beam, particle=electron, energy=0.150511006 
+units: units, type=static 
+setdefaults: globaldefaults, lfrngsbend=1, tfrngsbend=1, lfrngquad=1, tfrngquad=1, driftexact=0 
+readmap: tmi, iopt=2, ifile=16, nopt=1, nskip=0 
+savemap: stm, nmap=1 
+getmap: gtm, nmap=1, iopt=1 
+nlinsert: nlinsert, zstart=0.0, zend=1.8, steps=100, zlen=1.8, k=1.45446332708327, c=0.01, tau=-0.4 
+mapout: ptm, matrix=3, poly=3 
+clear: iden 
+raytrace: raytrace, file1=rays.in, type=readonly 
+particledump: particledump, file=rays.out, precision=15, close=false, flush=true, nunits=0 
+autotrack:autotrack, type=symplectic5 
+
+LineTrack, line=( nlinsert getmap particledump ) 
+
+#labor 
+readmap 
+savemap 
+clear 
+raytrace 
+autotrack 
+8*LineTrack 
+fin 
