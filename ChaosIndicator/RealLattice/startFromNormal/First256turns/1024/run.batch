@@ -1,0 +1,8 @@
+#!/bin/bash
+#SBATCH --qos=regular
+#SBATCH -A m2937
+#SBATCH --time=800
+#SBATCH --constraint=haswell
+#SBATCH -N 32
+
+srun -n 1024 xmain1
