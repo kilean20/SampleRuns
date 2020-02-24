@@ -4,7 +4,7 @@ TBT.*
 log*
 screen*
 *.npy
-*.pickle
+*pickle*
 partcl.data*
 
 # Byte-compiled / optimized / DLL files
