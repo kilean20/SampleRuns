@@ -1,0 +1,715 @@
+#comment
+IOTA V8.4 IO 1-magnet
+#menu
+beam: beam, particle=proton, ekinetic=2.5d-3, bcurr=2.d-3, bfreq=47713451.5924 !bfreq affects the scale length?
+units: units, type=static
+setdefaults: globaldefaults, lfrngsbend=1, tfrngsbend=1, lfrngquad=1, tfrngquad=1, driftexact=1
+mapout: ptm, matrix=3,poly=3,t2=0,u3=0
+!dumpstart:particledump,file=start.out,precision=6,close=true,flush=true,nunits=0
+!dumpbefore:particledump,file=before.out,precision=6,close=true,flush=true,nunits=0
+!dumpafter:particledump,file=after.out,precision=6,close=true,flush=true,nunits=0
+!dumpraysout:particledump,file=rays.out,precision=6,close=true,flush=true,nunits=0
+!dumpraysout:particledump,file=rays.out,precision=6,close=false,flush=true
+!raysin: raytrace, type=readonly file1=rays.in
+
+!raysin: raytrace, type=readonly, file1=impactrays.in, ntrace=0 !, nwrite=0 !PARSER CRASHES W/ CRAY COMPILER UNLESS SOMETHING AFTER RAYS.IN ????
+!impactsl=1.59044838641
+!impacttomlistatic: rayscale, xmult=impactsl, pxdiv=gamma*beta, ymult=impactsl, pydiv=gamma*beta, tmult=1.59044838641
+!ptmult=impactsl/(gamma*beta)*(2.*pi*30.e6)/299792458.
+
+
+!applymapsym5: raytrace, type=symplectic5, ntrace=1, nwrite=0
+!applymaptay1: raytrace, type=taylor1, ntrace=1, nwrite=0
+!dotracksym5: autotrack, type=symplectic5
+!dotracktay1: autotrack, type=taylor1
+!slice: autoslice
+!pois2digf: oldpoisson, nx=128,ny=128,nz=0, solving_for=phi, densityfunction=linear
+!post:autoapply, name=prntmoms
+!prntmoms: moments, precision=8, nunits=0
+!autodump: autoapply, name=dumpraysout
+fin: end
+
+! Values of quadrupole magnet gradients for 1 Nonlinear Magnet option
+dipAp = 0.029 ! main dipole half gap (iron)
+
+kq01 = -8.78017699
+kq02 = 13.24451745
+kq03 = -13.65151327
+kq04 = 19.75138652
+kq05 = -10.84199727
+kq06 = 16.24844348
+kq07 = -8.27411104
+kq08 = -7.45719247
+kq09 = 14.03362243
+kq10 = -12.23595641
+kq11 = -13.18863768
+kq12 = 11.50601829
+kq13 = -11.10445869
+kq14 = -6.78179218
+kq15 = 5.19026998
+kq16 = -5.8586173
+kq17 = 4.62460039
+kq18 = -4.49607687
+kq19 = 6.66737146
+kq20 = -6.69148177
+
+kqA1R =kq01
+kqA2R =kq02
+kqA3R =kq03
+kqA4R =kq04
+ kqB1R =kq05
+ kqB2R =kq06
+ kqB3R =kq07
+ kqB4R =kq08
+ kqB5R =kq09
+ kqB6R =kq10
+kqC1R =kq11
+kqC2R =kq12
+kqC3R =kq13
+ kqD1R =kq14
+ kqD2R =kq15
+ kqD3R =kq16
+ kqD4R =kq17
+kqE1R =kq18
+kqE2R =kq19
+
+ kqE3 =kq20
+
+kqA1L =kq01
+kqA2L =kq02
+kqA3L =kq03
+kqA4L =kq04
+ kqB1L =kq05
+ kqB2L =kq06
+ kqB3L =kq07
+ kqB4L =kq08
+ kqB5L =kq09
+ kqB6L =kq10
+kqC1L =kq11
+kqC2L =kq12
+kqC3L =kq13
+ kqD1L =kq14
+ kqD2L =kq15
+ kqD3L =kq16
+ kqD4L =kq17
+kqE1L =kq18
+kqE2L =kq19
+
+! EL solenoid
+ksEL=0
+
+! RF voltage
+Vrf = 0.001
+
+
+! Definition of IOTA components
+! Date: 9/16/2014
+! A.Valishev, A. Romanov
+! 11/14/2018: Added fringe lengths into main dipoles (AR)
+! 06/18/2019: Added parametric definition of the DN magnet built by RadiaBeam
+
+!********* Fringe fields lengths fro maind dipoles. Lengthening for D30 is known, D60 has to be matched.*******
+
+pc = 150
+HR = pc/0.299792458
+R0 = 70
+L030 = 3.14159265359/6*R0
+L060 = 3.14159265359/3*R0
+LEdge30 = 3.2
+L30 = 2*LEdge30+L030
+R30 = L30/PI*6
+H30 = HR/R30
+kGap = 32.45/30.5
+H60 = H30*kGap
+R60 = HR/H60
+L60 = R60*PI/3
+LEdge60 = (L60-L060)/2
+
+
+
+!****************** Danilov-Nagaitsev magnets *************************
+
+nDNKicks=3
+
+cDNMid = 0.008105461952!geometry factor for central DN magnet
+kDNMidFull = 0! 5.479576037e-06;
+kDNMidPart = kDNMidFull/nDNKicks
+
+lDNMag = 0.075 ! meters, length of DN unit magnet
+lDNGap = 0.025 ! meters, spacing between DN unit magnets
+lDNUnit = lDNMag+lDNGap ! meters
+lDNPart = lDNMag/nDNKicks/2 ! half-length of one slice of DN unit magnet
+
+LDN=1.8 !length of DN magnet (right), m
+
+dPsiDN = 0.3
+b0DN = 0.5*LDN/Tan(2*PI*dPsiDN/2)
+
+
+
+oDNh:    DRIFT, L=lDNGap/2, slices=10
+oDNPart:    DRIFT, L=lDNPart, slices=10
+
+b1DN = b0DN+(1+2*1)*(1+2*1)*lDNUnit*lDNUnit/4/b0DN
+b2DN = b0DN+(1+2*2)*(1+2*2)*lDNUnit*lDNUnit/4/b0DN
+b3DN = b0DN+(1+2*3)*(1+2*3)*lDNUnit*lDNUnit/4/b0DN
+b4DN = b0DN+(1+2*4)*(1+2*4)*lDNUnit*lDNUnit/4/b0DN
+b5DN = b0DN+(1+2*5)*(1+2*5)*lDNUnit*lDNUnit/4/b0DN
+b6DN = b0DN+(1+2*6)*(1+2*6)*lDNUnit*lDNUnit/4/b0DN
+b7DN = b0DN+(1+2*7)*(1+2*7)*lDNUnit*lDNUnit/4/b0DN
+b8DN = b0DN+(1+2*8)*(1+2*8)*lDNUnit*lDNUnit/4/b0DN
+b9DN = b0DN+(1+2*9)*(1+2*9)*lDNUnit*lDNUnit/4/b0DN
+
+
+
+ioR:   marker                 ! middle of Nonlinear Magnet straight #1
+ioL:   marker                 ! middle of Nonlinear Magnet straight #2
+nlR1:  marker                 ! beginning of Nonlinear Magnet #1
+nlR2:  marker                 ! end of Nonlinear Magnet #1
+nlL1:  marker                 ! beginning of Nonlinear Magnet #2
+nlL2:  marker                 ! end of Nonlinear Magnet #2
+
+lNL = 1.8                     ! Length of Nonlinear Magnet (m)
+
+
+oN:    DRIFT, L=0.1
+mDN09R:  marker, APERTYPE=ellipse,APERTURE={3.9446881E-3,5.25958413E-3}
+mDN08R:  marker, APERTYPE=ellipse,APERTURE={4.0521202E-3,5.40282702E-3}
+mDN07R:  marker, APERTYPE=ellipse,APERTURE={4.2600509E-3,5.68006786E-3}
+mDN06R:  marker, APERTYPE=ellipse,APERTURE={4.5566354E-3,6.07551398E-3}
+mDN05R:  marker, APERTYPE=ellipse,APERTURE={4.9279501E-3,6.57060016E-3}
+mDN04R:  marker, APERTYPE=ellipse,APERTURE={5.3603421E-3,7.1471228E-3}
+mDN03R:  marker, APERTYPE=ellipse,APERTURE={5.8417668E-3,7.78902251E-3}
+mDN02R:  marker, APERTYPE=ellipse,APERTURE={6.3622465E-3,8.48299541E-3}
+mDN01R:  marker, APERTYPE=ellipse,APERTURE={6.9138074E-3,9.21840994E-3}
+
+mDN10R:  marker, APERTYPE=ellipse,APERTURE={3.9446881E-3,5.25958413E-3}
+mDN11R:  marker, APERTYPE=ellipse,APERTURE={4.0521202E-3,5.40282702E-3}
+mDN12R:  marker, APERTYPE=ellipse,APERTURE={4.2600509E-3,5.68006786E-3}
+mDN13R:  marker, APERTYPE=ellipse,APERTURE={4.5566354E-3,6.07551398E-3}
+mDN14R:  marker, APERTYPE=ellipse,APERTURE={4.9279501E-3,6.57060016E-3}
+mDN15R:  marker, APERTYPE=ellipse,APERTURE={5.3603421E-3,7.1471228E-3}
+mDN16R:  marker, APERTYPE=ellipse,APERTURE={5.8417668E-3,7.78902251E-3}
+mDN17R:  marker, APERTYPE=ellipse,APERTURE={6.3622465E-3,8.48299541E-3}
+mDN18R:  marker, APERTYPE=ellipse,APERTURE={6.9138074E-3,9.21840994E-3}
+
+kDN01Err = 0
+kDN02Err = 0
+kDN03Err = 0
+kDN04Err = 0
+kDN05Err = 0
+kDN06Err = 0
+kDN07Err = 0
+kDN08Err = 0
+kDN09Err = 0
+kDN10Err = 0
+kDN11Err = 0
+kDN12Err = 0
+kDN13Err = 0
+kDN14Err = 0
+kDN15Err = 0
+kDN16Err = 0
+kDN17Err = 0
+kDN18Err = 0
+
+cDN01Err = 0
+cDN02Err = 0
+cDN03Err = 0
+cDN04Err = 0
+cDN05Err = 0
+cDN06Err = 0
+cDN07Err = 0
+cDN08Err = 0
+cDN09Err = 0
+cDN10Err = 0
+cDN11Err = 0
+cDN12Err = 0
+cDN13Err = 0
+cDN14Err = 0
+cDN15Err = 0
+cDN16Err = 0
+cDN17Err = 0
+cDN18Err = 0
+
+DN01RPart:  nllens,knll = kDNMidPart*b1DN/b9DN+kDN01Err,cnll = cDNMid*sqrt(b1DN/b9DN)+cDN01Err
+DN02RPart:  nllens,knll = kDNMidPart*b1DN/b8DN+kDN02Err,cnll = cDNMid*sqrt(b1DN/b8DN)+cDN02Err
+DN03RPart:  nllens,knll = kDNMidPart*b1DN/b7DN+kDN03Err,cnll = cDNMid*sqrt(b1DN/b7DN)+cDN03Err
+DN04RPart:  nllens,knll = kDNMidPart*b1DN/b6DN+kDN04Err,cnll = cDNMid*sqrt(b1DN/b6DN)+cDN04Err
+DN05RPart:  nllens,knll = kDNMidPart*b1DN/b5DN+kDN05Err,cnll = cDNMid*sqrt(b1DN/b5DN)+cDN05Err
+DN06RPart:  nllens,knll = kDNMidPart*b1DN/b4DN+kDN06Err,cnll = cDNMid*sqrt(b1DN/b4DN)+cDN06Err
+DN07RPart:  nllens,knll = kDNMidPart*b1DN/b3DN+kDN07Err,cnll = cDNMid*sqrt(b1DN/b3DN)+cDN07Err
+DN08RPart:  nllens,knll = kDNMidPart*b1DN/b2DN+kDN08Err,cnll = cDNMid*sqrt(b1DN/b2DN)+cDN08Err
+DN09RPart:  nllens,knll = kDNMidPart*b1DN/b1DN+kDN09Err,cnll = cDNMid*sqrt(b1DN/b1DN)+cDN09Err
+DN10RPart:  nllens,knll = kDNMidPart*b1DN/b1DN+kDN10Err,cnll = cDNMid*sqrt(b1DN/b1DN)+cDN10Err
+DN11RPart:  nllens,knll = kDNMidPart*b1DN/b2DN+kDN11Err,cnll = cDNMid*sqrt(b1DN/b2DN)+cDN11Err
+DN12RPart:  nllens,knll = kDNMidPart*b1DN/b3DN+kDN12Err,cnll = cDNMid*sqrt(b1DN/b3DN)+cDN12Err
+DN13RPart:  nllens,knll = kDNMidPart*b1DN/b4DN+kDN13Err,cnll = cDNMid*sqrt(b1DN/b4DN)+cDN13Err
+DN14RPart:  nllens,knll = kDNMidPart*b1DN/b5DN+kDN14Err,cnll = cDNMid*sqrt(b1DN/b5DN)+cDN14Err
+DN15RPart:  nllens,knll = kDNMidPart*b1DN/b6DN+kDN15Err,cnll = cDNMid*sqrt(b1DN/b6DN)+cDN15Err
+DN16RPart:  nllens,knll = kDNMidPart*b1DN/b7DN+kDN16Err,cnll = cDNMid*sqrt(b1DN/b7DN)+cDN16Err
+DN17RPart:  nllens,knll = kDNMidPart*b1DN/b8DN+kDN17Err,cnll = cDNMid*sqrt(b1DN/b8DN)+cDN17Err
+DN18RPart:  nllens,knll = kDNMidPart*b1DN/b9DN+kDN18Err,cnll = cDNMid*sqrt(b1DN/b9DN)+cDN18Err
+
+
+!DN01RMacros(MnDNkicks): MACRO = {DN01R: LINE=(oDNh,MnDNKicks*(oDNPart,DN01RPart,oDNPart),oDNh)};
+!DN02RMacros(MnDNkicks): MACRO = {DN02R: LINE=(oDNh,MnDNKicks*(oDNPart,DN02RPart,oDNPart),oDNh)};
+!DN03RMacros(MnDNkicks): MACRO = {DN03R: LINE=(oDNh,MnDNKicks*(oDNPart,DN03RPart,oDNPart),oDNh)};
+!DN04RMacros(MnDNkicks): MACRO = {DN04R: LINE=(oDNh,MnDNKicks*(oDNPart,DN04RPart,oDNPart),oDNh)};
+!DN05RMacros(MnDNkicks): MACRO = {DN05R: LINE=(oDNh,MnDNKicks*(oDNPart,DN05RPart,oDNPart),oDNh)};
+!DN06RMacros(MnDNkicks): MACRO = {DN06R: LINE=(oDNh,MnDNKicks*(oDNPart,DN06RPart,oDNPart),oDNh)};
+!DN07RMacros(MnDNkicks): MACRO = {DN07R: LINE=(oDNh,MnDNKicks*(oDNPart,DN07RPart,oDNPart),oDNh)};
+!DN08RMacros(MnDNkicks): MACRO = {DN08R: LINE=(oDNh,MnDNKicks*(oDNPart,DN08RPart,oDNPart),oDNh)};
+!DN09RMacros(MnDNkicks): MACRO = {DN09R: LINE=(oDNh,MnDNKicks*(oDNPart,DN09RPart,oDNPart),oDNh)};
+!DN10RMacros(MnDNkicks): MACRO = {DN10R: LINE=(oDNh,MnDNKicks*(oDNPart,DN10RPart,oDNPart),oDNh)};
+!DN11RMacros(MnDNkicks): MACRO = {DN11R: LINE=(oDNh,MnDNKicks*(oDNPart,DN11RPart,oDNPart),oDNh)};
+!DN12RMacros(MnDNkicks): MACRO = {DN12R: LINE=(oDNh,MnDNKicks*(oDNPart,DN12RPart,oDNPart),oDNh)};
+!DN13RMacros(MnDNkicks): MACRO = {DN13R: LINE=(oDNh,MnDNKicks*(oDNPart,DN13RPart,oDNPart),oDNh)};
+!DN14RMacros(MnDNkicks): MACRO = {DN14R: LINE=(oDNh,MnDNKicks*(oDNPart,DN14RPart,oDNPart),oDNh)};
+!DN15RMacros(MnDNkicks): MACRO = {DN15R: LINE=(oDNh,MnDNKicks*(oDNPart,DN15RPart,oDNPart),oDNh)};
+!DN16RMacros(MnDNkicks): MACRO = {DN16R: LINE=(oDNh,MnDNKicks*(oDNPart,DN16RPart,oDNPart),oDNh)};
+!DN17RMacros(MnDNkicks): MACRO = {DN17R: LINE=(oDNh,MnDNKicks*(oDNPart,DN17RPart,oDNPart),oDNh)};
+!DN18RMacros(MnDNkicks): MACRO = {DN18R: LINE=(oDNh,MnDNKicks*(oDNPart,DN18RPart,oDNPart),oDNh)};
+
+!EXEC, DN01RMacros($nDNkicks)
+!EXEC, DN02RMacros($nDNkicks)
+!EXEC, DN03RMacros($nDNkicks)
+!EXEC, DN04RMacros($nDNkicks)
+!EXEC, DN05RMacros($nDNkicks)
+!EXEC, DN06RMacros($nDNkicks)
+!EXEC, DN07RMacros($nDNkicks)
+!EXEC, DN08RMacros($nDNkicks)
+!EXEC, DN09RMacros($nDNkicks)
+!EXEC, DN10RMacros($nDNkicks)
+!EXEC, DN11RMacros($nDNkicks)
+!EXEC, DN12RMacros($nDNkicks)
+!EXEC, DN13RMacros($nDNkicks)
+!EXEC, DN14RMacros($nDNkicks)
+!EXEC, DN15RMacros($nDNkicks)
+!EXEC, DN16RMacros($nDNkicks)
+!EXEC, DN17RMacros($nDNkicks)
+!EXEC, DN18RMacros($nDNkicks)
+
+!RDR DNRLine: LINE=( &
+!RDR mDN01R,DN01R,  &
+!RDR mDN02R,DN02R,  &
+!RDR mDN03R,DN03R,  &
+!RDR mDN04R,DN04R,  &
+!RDR mDN05R,DN05R,  &
+!RDR mDN06R,DN06R,  &
+!RDR mDN07R,DN07R,  &
+!RDR mDN08R,DN08R,  &
+!RDR mDN09R,DN09R,ioR, &
+!RDR mDN10R,DN10R,  &
+!RDR mDN11R,DN11R,  &
+!RDR mDN12R,DN12R,  &
+!RDR mDN13R,DN13R,  &
+!RDR mDN14R,DN14R,  &
+!RDR mDN15R,DN15R,  &
+!RDR mDN16R,DN16R,  &
+!RDR mDN17R,DN17R,  &
+!RDR mDN18R,DN18R )
+!DNRLine: LINE=(18*oN) !for now comment out DNRLine and replace with this 1.8m drift
+DNRLine: nlinsert, zstart=0.d0, zend=1.8d0, steps=1000, zlen=1.8d0, k=1.45446332708327d0, tau=-0.4d0, c=0.01d0
+NLL_Line: LINE=(18*oN)
+
+!****************** Instrumentation ***********************************
+! all BPMs, except ibpmA1, are 9 cm long drifts with a marker in the middle
+obpm:    DRIFT,      L=    0.045 
+obpmM:    DRIFT,      L=    0.035 
+obpmS:    DRIFT,      L=    0.02 
+ibpm:    MONITOR 
+
+ibpmA1: ibpm
+ibpmA2R: ibpm
+ibpmA3R: ibpm
+ibpmA2L: ibpm
+ibpmA3L: ibpm
+ibpmB1R: ibpm
+ibpmB2R: ibpm
+ibpmB1L: ibpm
+ibpmB2L: ibpm
+ibpmC1R: ibpm
+ibpmC2R: ibpm
+ibpmC1L: ibpm
+ibpmC2L: ibpm
+ibpmD1R: ibpm
+ibpmD2R: ibpm
+ibpmD1L: ibpm
+ibpmD2L: ibpm
+ibpmE1R: ibpm
+ibpmE2R: ibpm
+ibpmE1L: ibpm
+ibpmE2L: ibpm
+
+bpmA1:  LINE=(obpmS, ibpmA1, obpm)
+bpmA2R:  LINE=(obpm, ibpmA2R, obpmM)
+bpmA3R:  LINE=(obpm, ibpmA3R, obpm)
+bpmA2L:  LINE=(obpmM, ibpmA2L, obpm)
+bpmA3L:  LINE=(obpm, ibpmA3L, obpm)
+bpmB1R:  LINE=(obpm, ibpmB1R, obpm)
+bpmB2R:  LINE=(obpm, ibpmB2R, obpm)
+bpmB1L:  LINE=(obpm, ibpmB1L, obpm) 
+bpmB2L:  LINE=(obpm, ibpmB2L, obpm) 
+bpmC1R:  LINE=(obpm, ibpmC1R, obpm) 
+bpmC2R:  LINE=(obpm, ibpmC2R, obpm) 
+bpmC1L:  LINE=(obpm, ibpmC1L, obpm) 
+bpmC2L:  LINE=(obpm, ibpmC2L, obpm) 
+bpmD1R:  LINE=(obpm, ibpmD1R, obpm) 
+bpmD2R:  LINE=(obpm, ibpmD2R, obpm) 
+bpmD1L:  LINE=(obpm, ibpmD1L, obpm) 
+bpmD2L:  LINE=(obpm, ibpmD2L, obpm) 
+bpmE1R:  LINE=(obpm, ibpmE1R, obpm) 
+bpmE2R:  LINE=(obpm, ibpmE2R, obpm) 
+bpmE1L:  LINE=(obpm, ibpmE1L, obpm) 
+bpmE2L:  LINE=(obpm, ibpmE2L, obpm) 
+
+!****************** Dipole magnets ************************************
+M1R:     SBEND,   L=L30/100,  ANGLE=0.5235987756, hgap=dipAp,fint=0.5, slices=5  !RDR added hgap and fint
+M4R:     SBEND,   L=L30/100,  ANGLE=0.5235987756, hgap=dipAp,fint=0.5, slices=5  !RDR added hgap and fint
+M1L:     SBEND,   L=L30/100,  ANGLE=0.5235987756, hgap=dipAp,fint=0.5, slices=5  !RDR added hgap and fint
+M4L:     SBEND,   L=L30/100,  ANGLE=0.5235987756, hgap=dipAp,fint=0.5, slices=5  !RDR added hgap and fint
+
+M2R:     SBEND,   L=L60/100,  ANGLE=1.047197551, hgap=dipAp,fint=0.5, slices=10  !RDR added hgap and fint
+M3R:     SBEND,   L=L60/100,  ANGLE=1.047197551, hgap=dipAp,fint=0.5, slices=10  !RDR added hgap and fint
+M2L:     SBEND,   L=L60/100,  ANGLE=1.047197551, hgap=dipAp,fint=0.5, slices=10  !RDR added hgap and fint
+M3L:     SBEND,   L=L60/100,  ANGLE=1.047197551, hgap=dipAp,fint=0.5, slices=10  !RDR added hgap and fint
+
+!m60:     SBEND,   L=L60/100,  ANGLE=1.047197551           !RDR this appears to not be used anywhere
+!m30:     SBEND,   L=L30/100,  ANGLE=0.5235987756          !RDR this appears to not be used anywhere
+!dedge:   dipedge, h=1.4285714283,e1=0,hgap=dipAp,fint=0.5 !RDR this appears to not be used anywhere
+!obcoil:  DRIFT,   L=      0.0895  ! Width of coil         !RDR this appears to not be used anywhere
+
+!RDR dedge30:   dipedge, h=100/R30,e1=0,hgap=dipAp,fint=0.5
+!RDR dedge60:   dipedge, h=100/R60,e1=0,hgap=dipAp,fint=0.5
+obcoil30:  DRIFT,   L=      0.0895-LEdge30/100, slices=10  ! Width of coil
+obcoil60:  DRIFT,   L=      0.0895-LEdge60/100, slices=10  ! Width of coil
+
+!RDR phM1R:   LINE=(obcoil30, dedge30, M1R, dedge30, obcoil30)
+!RDR phM2R:   LINE=(obcoil60, dedge60, M2R, dedge60, obcoil60)
+!RDR phM3R:   LINE=(obcoil60, dedge60, M3R, dedge60, obcoil60)
+!RDR phM4R:   LINE=(obcoil30, dedge30, M4R, dedge30, obcoil30)
+!RDR phM4L:   LINE=(obcoil30, dedge30, M4L, dedge30, obcoil30)
+!RDR phM3L:   LINE=(obcoil60, dedge60, M3L, dedge60, obcoil60)
+!RDR phM2L:   LINE=(obcoil60, dedge60, M2L, dedge60, obcoil60)
+!RDR phM1L:   LINE=(obcoil30, dedge30, M1L, dedge30, obcoil30)
+
+phM1R:   LINE=(obcoil30, M1R, obcoil30)
+phM2R:   LINE=(obcoil60, M2R, obcoil60)
+phM3R:   LINE=(obcoil60, M3R, obcoil60)
+phM4R:   LINE=(obcoil30, M4R, obcoil30)
+phM4L:   LINE=(obcoil30, M4L, obcoil30)
+phM3L:   LINE=(obcoil60, M3L, obcoil60)
+phM2L:   LINE=(obcoil60, M2L, obcoil60)
+phM1L:   LINE=(obcoil30, M1L, obcoil30)
+
+!***************** Injection bump correctors ************************** !not in lattice
+bumpcoil: DRIFT, L=0.02 
+BUMPL: VKICKER, L=0.1, KICK = 0
+BUMPR: VKICKER, L=0.1, KICK = 0
+
+phBUMPL: LINE=(bumpcoil, BUMPL, bumpcoil)
+phBUMPR: LINE=(bumpcoil, BUMPR, bumpcoil)
+
+!***************** Quadrupole magnets *********************************
+QA1R: QUADRUPOLE,  L=      0.21,  K1 =kqA1R, slices=10
+QA2R: QUADRUPOLE,  L=      0.21,  K1 =kqA2R, slices=10
+QA3R: QUADRUPOLE,  L=      0.21,  K1 =kqA3R, slices=10
+QA4R: QUADRUPOLE,  L=      0.21,  K1 =kqA4R, slices=10
+QA1L: QUADRUPOLE,  L=      0.21,  K1 =kqA1L, slices=10
+QA2L: QUADRUPOLE,  L=      0.21,  K1 =kqA2L, slices=10
+QA3L: QUADRUPOLE,  L=      0.21,  K1 =kqA3L, slices=10
+QA4L: QUADRUPOLE,  L=      0.21,  K1 =kqA4L, slices=10
+QB1R: QUADRUPOLE,  L=      0.21,  K1 =kqB1R, slices=10
+QB2R: QUADRUPOLE,  L=      0.21,  K1 =kqB2R, slices=10
+QB3R: QUADRUPOLE,  L=      0.21,  K1 =kqB3R, slices=10
+QB4R: QUADRUPOLE,  L=      0.21,  K1 =kqB4R, slices=10
+QB5R: QUADRUPOLE,  L=      0.21,  K1 =kqB5R, slices=10
+QB6R: QUADRUPOLE,  L=      0.21,  K1 =kqB6R, slices=10
+QB1L: QUADRUPOLE,  L=      0.21,  K1 =kqB1L, slices=10
+QB2L: QUADRUPOLE,  L=      0.21,  K1 =kqB2L, slices=10
+QB3L: QUADRUPOLE,  L=      0.21,  K1 =kqB3L, slices=10
+QB4L: QUADRUPOLE,  L=      0.21,  K1 =kqB4L, slices=10
+QB5L: QUADRUPOLE,  L=      0.21,  K1 =kqB5L, slices=10
+QB6L: QUADRUPOLE,  L=      0.21,  K1 =kqB6L, slices=10
+QC1R: QUADRUPOLE,  L=      0.21,  K1 =kqC1R, slices=10
+QC2R: QUADRUPOLE,  L=      0.21,  K1 =kqC2R, slices=10
+QC3R: QUADRUPOLE,  L=      0.21,  K1 =kqC3R, slices=10
+QC1L: QUADRUPOLE,  L=      0.21,  K1 =kqC1L, slices=10
+QC2L: QUADRUPOLE,  L=      0.21,  K1 =kqC2L, slices=10
+QC3L: QUADRUPOLE,  L=      0.21,  K1 =kqC3L, slices=10
+QD1R: QUADRUPOLE,  L=      0.21,  K1 =kqD1R, slices=10
+QD2R: QUADRUPOLE,  L=      0.21,  K1 =kqD2R, slices=10
+QD3R: QUADRUPOLE,  L=      0.21,  K1 =kqD3R, slices=10
+QD4R: QUADRUPOLE,  L=      0.21,  K1 =kqD4R, slices=10
+QD1L: QUADRUPOLE,  L=      0.21,  K1 =kqD1L, slices=10
+QD2L: QUADRUPOLE,  L=      0.21,  K1 =kqD2L, slices=10
+QD3L: QUADRUPOLE,  L=      0.21,  K1 =kqD3L, slices=10
+QD4L: QUADRUPOLE,  L=      0.21,  K1 =kqD4L, slices=10
+QE1R: QUADRUPOLE,  L=      0.21,  K1 =kqE1R, slices=10
+QE2R: QUADRUPOLE,  L=      0.21,  K1 =kqE2R, slices=10
+QE3:  QUADRUPOLE,  L=      0.21,  K1 =kqE3, slices=10
+QE1L: QUADRUPOLE,  L=      0.21,  K1 =kqE1L, slices=10
+QE2L: QUADRUPOLE,  L=      0.21,  K1 =kqE2L, slices=10
+oqcoil:     DRIFT,  L=      0.0625 , slices=10 ! quadrupole "coil-to-iron"
+
+phQA1R: LINE=(oqcoil, QA1R, oqcoil)
+phQA2R: LINE=(oqcoil, QA2R, oqcoil)
+phQA3R: LINE=(oqcoil, QA3R, oqcoil)
+phQA4R: LINE=(oqcoil, QA4R, oqcoil)
+phQA1L: LINE=(oqcoil, QA1L, oqcoil)
+phQA2L: LINE=(oqcoil, QA2L, oqcoil)
+phQA3L: LINE=(oqcoil, QA3L, oqcoil)
+phQA4L: LINE=(oqcoil, QA4L, oqcoil)
+
+phQB1R: LINE=(oqcoil, QB1R, oqcoil)
+phQB2R: LINE=(oqcoil, QB2R, oqcoil)
+phQB3R: LINE=(oqcoil, QB3R, oqcoil)
+phQB4R: LINE=(oqcoil, QB4R, oqcoil)
+phQB5R: LINE=(oqcoil, QB5R, oqcoil)
+phQB6R: LINE=(oqcoil, QB6R, oqcoil)
+phQB1L: LINE=(oqcoil, QB1L, oqcoil)
+phQB2L: LINE=(oqcoil, QB2L, oqcoil)
+phQB3L: LINE=(oqcoil, QB3L, oqcoil)
+phQB4L: LINE=(oqcoil, QB4L, oqcoil)
+phQB5L: LINE=(oqcoil, QB5L, oqcoil)
+phQB6L: LINE=(oqcoil, QB6L, oqcoil)
+
+phQC1R: LINE=(oqcoil, QC1R, oqcoil)
+phQC2R: LINE=(oqcoil, QC2R, oqcoil)
+phQC3R: LINE=(oqcoil, QC3R, oqcoil)
+phQC1L: LINE=(oqcoil, QC1L, oqcoil)
+phQC2L: LINE=(oqcoil, QC2L, oqcoil)
+phQC3L: LINE=(oqcoil, QC3L, oqcoil)
+
+phQD1R: LINE=(oqcoil, QD1R, oqcoil)
+phQD2R: LINE=(oqcoil, QD2R, oqcoil)
+phQD3R: LINE=(oqcoil, QD3R, oqcoil)
+phQD4R: LINE=(oqcoil, QD4R, oqcoil)
+phQD1L: LINE=(oqcoil, QD1L, oqcoil)
+phQD2L: LINE=(oqcoil, QD2L, oqcoil)
+phQD3L: LINE=(oqcoil, QD3L, oqcoil)
+phQD4L: LINE=(oqcoil, QD4L, oqcoil)
+
+phQE1R: LINE=(oqcoil, QE1R, oqcoil)
+phQE2R: LINE=(oqcoil, QE2R, oqcoil)
+phQE3:  LINE=(oqcoil, QE3, oqcoil)
+phQE1L: LINE=(oqcoil, QE1L, oqcoil)
+phQE2L: LINE=(oqcoil, QE2L, oqcoil)
+
+!****** Combined correctors skew-quads, vertical and horizontal ******* !Correctors are not implemented
+SQA1R: QUADRUPOLE,  L=0.1,  K1S =0.0, slices=10
+SQA2R: QUADRUPOLE,  L=0.1,  K1S =0.0, slices=10
+SQA1L: QUADRUPOLE,  L=0.1,  K1S =0.0, slices=10
+SQA2L: QUADRUPOLE,  L=0.1,  K1S =0.0, slices=10
+
+SQB1R: QUADRUPOLE,  L=0.1,  K1S =0, slices=10
+SQB2R: QUADRUPOLE,  L=0.1,  K1S =0, slices=10
+SQB1L: QUADRUPOLE,  L=0.1,  K1S =0, slices=10
+SQB2L: QUADRUPOLE,  L=0.1,  K1S =0, slices=10
+
+SQC1R: QUADRUPOLE,  L=0.1,  K1S =0, slices=10
+SQC2R: QUADRUPOLE,  L=0.1,  K1S =0, slices=10
+SQC1L: QUADRUPOLE,  L=0.1,  K1S =0, slices=10
+SQC2L: QUADRUPOLE,  L=0.1,  K1S =0, slices=10
+
+SQD1R: QUADRUPOLE,  L=0.1,  K1S =0, slices=10
+SQD2R: QUADRUPOLE,  L=0.1,  K1S =0, slices=10
+SQD1L: QUADRUPOLE,  L=0.1,  K1S =0, slices=10
+SQD2L: QUADRUPOLE,  L=0.1,  K1S =0, slices=10
+
+SQE1R: QUADRUPOLE,  L=0.1,  K1S =0, slices=10
+SQE2R: QUADRUPOLE,  L=0.1,  K1S =0, slices=10
+SQE1L: QUADRUPOLE,  L=0.1,  K1S =0, slices=10
+SQE2L: QUADRUPOLE,  L=0.1,  K1S =0, slices=10
+
+osqcoil: DRIFT, L=0.01 , slices=10!corrector's "coil-to-iron"
+
+!****placeholders for correctors with adjusent gaps for coils
+phSQA1R: LINE=(osqcoil, SQA1R, osqcoil)
+phSQA2R: LINE=(osqcoil, SQA2R, osqcoil)
+phSQA1L: LINE=(osqcoil, SQA1L, osqcoil)
+phSQA2L: LINE=(osqcoil, SQA2L, osqcoil)
+
+phSQB1R: LINE=(osqcoil, SQB1R, osqcoil)
+phSQB2R: LINE=(osqcoil, SQB2R, osqcoil)
+phSQB1L: LINE=(osqcoil, SQB1L, osqcoil)
+phSQB2L: LINE=(osqcoil, SQB2L, osqcoil)
+
+phSQC1R: LINE=(osqcoil, SQC1R, osqcoil)
+phSQC2R: LINE=(osqcoil, SQC2R, osqcoil)
+phSQC1L: LINE=(osqcoil, SQC1L, osqcoil)
+phSQC2L: LINE=(osqcoil, SQC2L, osqcoil)
+
+phSQD1R: LINE=(osqcoil, SQD1R, osqcoil)
+phSQD2R: LINE=(osqcoil, SQD2R, osqcoil)
+phSQD1L: LINE=(osqcoil, SQD1L, osqcoil)
+phSQD2L: LINE=(osqcoil, SQD2L, osqcoil)
+ 
+phSQE1R: LINE=(osqcoil, SQE1R, osqcoil)
+phSQE2R: LINE=(osqcoil, SQE2R, osqcoil)
+phSQE1L: LINE=(osqcoil, SQE1L, osqcoil)
+phSQE2L: LINE=(osqcoil, SQE2L, osqcoil)
+
+!****** Correctors are not implementes as there is no way to place corrector in an element  ******* 
+!test correcotrs
+testTrimXY: KICKER, L=0, HKICK=0, VKICK=0, TILT=0
+
+!************************* Electron Lens solenoid *********************
+!RDR cEL:   SOLENOID, L=   0.7, KS =ksEL
+cEL: drift,l= 0.7, slices=10
+oDs:   DRIFT,    L=   0.4, slices=10
+
+!************************ RF Cavity ***********************************
+!RDR rfc:   RFCAVITY, L=0.05, VOLT=Vrf, lag=0.5, harmon=4
+!RDR thincav: srfc, volts=1000.d0, freq=2185861.94643064d0
+!RDR dr025: drift, l=0.025d0
+!RDR rfc, line=(dr025 thincav dr025)
+rfc: drift, l=0.05, slices=10
+
+oDrf:  DRIFT, L=0.725, slices=10
+
+!******************** Drifts and Markers ******************************
+oAL:   DRIFT, L=      0.85, slices=10    ! Left half of injection drift
+oAR:   DRIFT, L=      0.785, slices=10   ! Right half of injection drift, shortened for bpmA1(L=0.065)
+oA1:   DRIFT, L=      0.01, slices=10    ! gap between QA1 & QA2
+oA2:   DRIFT, L=      0.26, slices=10    ! drift between QA2 & QA3, shortened to allow bpm, combined corrector and bump corrector
+oA2s:  DRIFT, L=      0.10, slices=10    ! drift between QA2 & QA3, shortened to allow sextupole, bpm, combined corrector and bump corrector
+oA3:   DRIFT, L=      0.02, slices=10    ! gap between QA3 & QA4
+
+oB1:   DRIFT, L=     0.0705, slices=10   ! gap between phM2 and phSQB1
+oB2:   DRIFT, L=     0.01, slices=10     ! gap between phSQB1 & phQB1 
+oB3:   DRIFT, L=     0.015, slices=10    ! gap between phQB1 & phQB2 
+oB4:   DRIFT, L=     0.015, slices=10    ! gap between phQB2 & phQB3 
+oB5:   DRIFT, L=     0.015, slices=10    ! gap between phQB4 & phQB5 
+oB6:   DRIFT, L=     0.015, slices=10    ! gap between phQB5 & phQB6 
+oB7:   DRIFT, L=     0.01, slices=10     ! gap between phQB6 & phSQB2 
+oB8:   DRIFT, L=     0.0705, slices=10   ! gap between phSQB2 & phM3 
+
+oC2:   DRIFT, L=      0.23, slices=10    ! drift between QC2 & QC3
+oC1s:  DRIFT, L=      0.055, slices=10   ! drift between QC1 & QC2 w/sextupole
+oC2s:  DRIFT, L=      0.055, slices=10   ! drift between QC2 & QC3 w/sextupole
+
+obm:   DRIFT, L=      0.2205, slices=10  ! drift on both sides of dipole magnet
+obmp:  DRIFT, L=      0.1305, slices=10  ! drift on both sides of dipole magnet, shortened for pickup bpm
+obmc:  DRIFT, L=      0.1005, slices=10  ! drift on both sides of dipole magnet in presense of corrector
+obms:  DRIFT, L=      0.1005, slices=10  ! drift on both sides of dipole magnet in presense of sextupole
+obmpc: DRIFT, L=      0.0105, slices=10  ! drift on both sides of dipole magnet, shortened for pickup bpm and corrector
+
+el1:   marker                 ! beginning of EL solenoid
+el2:   marker                 ! end of EL solenoid
+
+oD:    DRIFT, L=      0.75  , slices=10  ! Half of long drift in "D" straight
+oD1:   DRIFT, L=       0.2   , slices=10 ! drift between dipole and QD1 (QD4)
+oD1c:  DRIFT, L=       0.08  , slices=10 ! same with corrector
+oD2:   DRIFT, L=     0.295 , slices=10   ! drift between QD1 & QD2 (QD3 & QD4)
+oD2c:  DRIFT, L=     0.0875 , slices=10  ! half oD2 with corrector
+oD2s:  DRIFT, L=     0.0875 , slices=10  ! half oD2 with sextupole
+
+oE1:   DRIFT, L=     0.1  , slices=10
+oE2:   DRIFT, L=     0.02 , slices=2
+oE3:   DRIFT, L=     0.88 , slices=10
+oE4:   DRIFT, L=     0.01  , slices=10
+oE5:   DRIFT, L=     0.01  , slices=10
+oE6:   DRIFT, L=     0.2525  , slices=10
+oE7:   DRIFT, L=     0.01  , slices=1
+!oE4:   DRIFT, L=     0.3225  , slices=10
+
+!******************** Sextupoles **************************************
+
+sk1r =       -281.8814977 
+sk1l =       -281.8814977 
+sk2r =        509.2391799 
+sk2l =        509.2391799 
+sk3r =                  0 
+sk3l =                  0 
+sk4r =                  0 
+sk4l =                  0 
+sk5r =                  0 
+sk5l =                  0 
+sk6r =                 70 
+sk6l =                 70 
+
+
+
+
+
+SA1R:   SEXTUPOLE, L=0.1,  K2 =sk6r, slices=10
+SA1L:   SEXTUPOLE, L=0.1,  K2 =sk6l, slices=10
+SC1R:   SEXTUPOLE, L=0.1,  K2 =sk1r, slices=10
+SC1L:   SEXTUPOLE, L=0.1,  K2 =sk1l, slices=10
+SC2R:   SEXTUPOLE, L=0.1,  K2 =sk2r, slices=10
+SC2L:   SEXTUPOLE, L=0.1,  K2 =sk2l, slices=10
+SD1R:   SEXTUPOLE, L=0.1,  K2 =sk3r, slices=10
+SD1L:   SEXTUPOLE, L=0.1,  K2 =sk3l, slices=10
+SE1R:   SEXTUPOLE, L=0.1,  K2 =sk4r, slices=10
+SE1L:   SEXTUPOLE, L=0.1,  K2 =sk4l, slices=10
+SE2R:   SEXTUPOLE, L=0.1,  K2 =sk5r, slices=10
+SE2L:   SEXTUPOLE, L=0.1,  K2 =sk5l, slices=10
+!*******Placeholders for sextupoles ***********************************
+osxcoilS: DRIFT, L=0.01 ,slices=2 !sextupole's coil thickness
+osxcoil: DRIFT, L=0.02 , slices=2 !sextupole's coil thickness
+osxcoilL: DRIFT, L=0.03 ,slices=3 !sextupole's coil thickness
+phlSA1R:  LINE=(osxcoilL, SA1R, osxcoilL)
+phlSA1L:  LINE=(osxcoilL, SA1L, osxcoilL)
+phSC1R:  LINE=(osxcoilS, SC1R, osxcoilS)
+phSC1L:  LINE=(osxcoilS, SC1L, osxcoilS)
+phSC2R:  LINE=(osxcoilS, SC2R, osxcoilS)
+phSC2L:  LINE=(osxcoilS, SC2L, osxcoilS)
+phSD1R:  LINE=(osxcoilS, SD1R, osxcoilS)
+phSD1L:  LINE=(osxcoilS, SD1L, osxcoilS)
+phSE1R:  LINE=(osxcoil, SE1R, osxcoil)
+phSE1L:  LINE=(osxcoil, SE1L, osxcoil)
+phSE2R:  LINE=(osxcoil, SE2R, osxcoil)
+phSE2L:  LINE=(osxcoil, SE2L, osxcoil)
+
+
+! IOTA lattice definition
+! Date: 9/16/2014
+! A.Valishev
+
+AR_Line: LINE=(testTrimXY, bpmA1, oAR, phQA1R, oA1, phQA2R, phBUMPR, oA2s, phlSA1R, phSQA1R, bpmA2R, phQA3R, oA3, phQA4R, bpmA3R, phSQA2R, obmpc)
+
+AL_Line: LINE=(obmpc, phSQA2L, bpmA3L, phQA4L, oA3, phQA3L, bpmA2L, phSQA1L, phlSA1L, oA2s, phBUMPL, phQA2L, oA1, phQA1L, oAL)
+
+BR_Line: LINE=(oB1, phSQB1R, oB2, phQB1R, oB3, phQB2R, oB4, phQB3R, bpmB1R, &
+               nlR1, DNRLine , nlR2, &
+               bpmB2R, phQB4R, oB5, phQB5R, oB6, phQB6R, oB7, phSQB2R, oB8)
+BL_Line: LINE=(oB8, phSQB2L, OB7, phQB6L, oB6, phQB5L, oB5, phQB4L, bpmB2L, &
+               nlL1, NLL_Line, nlL2, &
+               bpmB1L, phQB3L, oB4, phQB2L, oB3, phQB1L, oB2, phSQB1L, oB1)
+!BR_Line: LINE=(oB1, phSQB1R, oB2, phQB1R, oB3, phQB2R, oB4, phQB3R, bpmB1R, &
+!               nlR1, oNu, ioR, oNd, nlR2, &
+!               bpmB2R, phQB4R, oB5, phQB5R, oB6, phQB6R, oB7, phSQB2R, oB8)
+!BL_Line: LINE=(oB8, phSQB2L, OB7, phQB6L, oB6, phQB5L, oB5, phQB4L, bpmB2L, &
+!               nlL1, oNu, ioL, oNd, nlL2, &
+!               bpmB1L, phQB3L, oB4, phQB2L, oB3, phQB1L, oB2, phSQB1L, oB1)
+
+
+CR_Line: LINE=(obmc, phSQC1R, bpmC1R, phQC1R, oC1s, phSC1R, oC1s, phQC2R, &
+                    oC2s, phSC2R, oC2s, phQC3R, bpmC2R, phSQC2R, obmc)
+CL_Line: LINE=(obmc, phSQC2L, bpmC2L, phQC3L, oC2s, phSC2L, oC2s, &
+               phQC2L, oC1s, phSC1L, oC1s, phQC1L, bpmC1L, phSQC1L, obmc)
+
+DR_Line: LINE=(obm, bpmD1R, oD1c, phSQD1R, phQD1R, oD2s, phSD1R, oD2s, phQD2R, oDs, &
+               el1, cEL, el2, &
+               oDs, phQD3R, oD2c, phSQD2R, oD2c, phQD4R, oD1, bpmD2R, obm)
+DL_Line: LINE=(obm, bpmD2L, oD1, phQD4L, oD2c, phSQD2L, oD2c, phQD3L, &
+               oDrf, rfc, oDrf, &
+               phQD2L, oD2s, phSD1L, oD2s, phQD1L, phSQD1L, oD1c, bpmD1L, obm)
+
+E_Line:  LINE=(obm, bpmE1R, oE1, phQE1R, oE2, phSQE1R, oE3, bpmE2R, phQE2R, oE4, phSE1R, oE5, phSQE2R, oE6, phSE2R, oE7,&
+               phQE3, oE7, phSE2L, oE6, phSQE2L, oE5, phSE1L, oE4, phQE2L, bpmE2L, oE3, phSQE1L, oE2, phQE1L, oE1, bpmE1L, obm)
+
+
+
+
+IOTA: LINE=( AR_Line, phM1R, BR_Line, phM2R, CR_Line, phM3R, DR_Line, phM4R, E_Line, &
+       phM4L, DL_Line, phM3L, CL_Line, phM2L, BL_Line, phM1L, AL_Line)
+
+
+tasm:  tasm, iopt=2, idata=12, ipmaps=0, isend=1, iwmaps=0
+
+
+#labor
+iota
+tasm
